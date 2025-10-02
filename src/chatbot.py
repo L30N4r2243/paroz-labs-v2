@@ -2,13 +2,6 @@ from anthropic import Anthropic, APIStatusError
 from flask import current_app
 
 def get_claude_response(messages: list[dict]) -> str:
-    """
-    Formato esperado de messages:
-    [
-        {"role": "user", "content": "Hola, ¿cómo estás?"},
-        {"role": "assistant", "content": "Estoy bien, gracias. ¿Y tú?"}
-    ]
-    """
     try:
         api_key = current_app.config["ANTHROPIC_API_KEY"]
         model = current_app.config["CLAUDE_MODEL"]
