@@ -15,6 +15,13 @@ def chat():
     if not messages:
         return jsonify({"error": "Falta el campo 'messages' en la petición."}), 400
 
+    # Límite de 50 mensajes por sesión
+    if len(messages) > 50:
+        return jsonify({
+            "message": "Has alcanzado el número máximo de mensajes por sesión. Para continuar, por favor inicia una nueva conversación.",
+            "sender": "system_message"
+        }), 403
+
     # Pasamos el historial completo de mensajes a Claude
     bot_response = get_claude_response(messages)
 

@@ -18,12 +18,20 @@ def get_claude_response(messages: list[dict]) -> str:
 
         response = client.messages.create(
             model=model,
-            max_tokens=2000,
+            max_tokens=300,  # Límite que puede causar el corte
             system=system_prompt,
             messages=messages
         )
 
-        return response.content[0].text
+        text_response = response.content[0].text
+
+        # Si la respuesta fue cortada, la truncamos a la última palabra completa.
+        if response.stop_reason == 'max_tokens':
+            last_space = text_response.rfind(' ')
+            if last_space != -1:
+                text_response = text_response[:last_space].strip() + "..."
+
+        return text_response
 
     except APIStatusError as e:
         print(f"[Claude API Error] {e}")
