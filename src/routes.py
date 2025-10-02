@@ -10,14 +10,13 @@ def chat():
     Endpoint principal para la conversación con el chatbot.
     """
     data = request.get_json()
-    user_message = data.get('message')
+    messages = data.get("messages", [])
 
-    if not user_message:
-        return jsonify({"error": "Falta el campo 'message' en la petición."}), 400
+    if not messages:
+        return jsonify({"error": "Falta el campo 'messages' en la petición."}), 400
 
-    print(f"-> Mensaje recibido del frontend: {user_message}")
-
-    bot_response = get_claude_response(user_message)
+    # Pasamos el historial completo de mensajes a Claude
+    bot_response = get_claude_response(messages)
 
     return jsonify({
         "message": bot_response,
