@@ -1,5 +1,3 @@
-"use client"
-
 import { useState } from "react"
 
 export default function ChatInput() {
@@ -19,7 +17,7 @@ export default function ChatInput() {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && handleSend()}
-        className="flex-1 border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="flex-1 border rounded-lg px-3 py-2 text-sm text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
       <button
         onClick={handleSend}

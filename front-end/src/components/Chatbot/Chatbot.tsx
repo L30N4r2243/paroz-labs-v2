@@ -22,8 +22,8 @@ export default function Chatbot() {
             className="mb-3 w-80 h-[500px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="flex justify-between items-center px-4 py-3 bg-blue-600 text-white">
-              <h2 className="font-semibold">Paroz Labs AI 🤖</h2>
+            <div className="flex justify-between items-center px-4 py-3 bg-blue-800 text-white">
+              <h2 className="font-semibold">Paroz Labs AI </h2>
             </div>
 
             {/* Mensajes */}
