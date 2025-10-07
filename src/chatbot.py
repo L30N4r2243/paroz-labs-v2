@@ -9,20 +9,37 @@ def get_claude_response(messages: list[dict]) -> str:
 
         client = Anthropic(api_key=api_key)
 
+        input_length = sum(len(m.get("content", "")) for m in messages)
+        max_output = 350 if input_length < 1000 else 600
+
+
         response = client.messages.create(
             model=model,
-            max_tokens=300,  # Límite que puede causar el corte
+            max_tokens=max_output,
             system=system_prompt,
             messages=messages
         )
 
         text_response = response.content[0].text
 
-        # Si la respuesta fue cortada, la truncamos a la última palabra completa.
+        # Si la respuesta fue cortada, la manejamos de forma más conversacional.
         if response.stop_reason == 'max_tokens':
-            last_space = text_response.rfind(' ')
-            if last_space != -1:
-                text_response = text_response[:last_space].strip() + "..."
+            # Intentamos cortar en el final de la última oración completa.
+            last_period = text_response.rfind('.')
+            last_question = text_response.rfind('?')
+            last_exclamation = text_response.rfind('!')
+            last_sentence_end = max(last_period, last_question, last_exclamation)
+
+            if last_sentence_end > -1:
+                text_response = text_response[:last_sentence_end + 1]
+            else:
+                # Si no hay oraciones completas, cortamos en la última palabra.
+                last_space = text_response.rfind(' ')
+                if last_space != -1:
+                    text_response = text_response[:last_space].strip()
+            
+            # Añadimos una invitación para continuar la conversación.
+            text_response += "\n\n(Vaya, parece que me extendí un poco. Si quieres, solo dime **'continúa'** y sigo con la idea)."
 
         return text_response
 
