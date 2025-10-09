@@ -36,11 +36,14 @@ export default function Chatbot() {
       const res = await fetch("http://localhost:5000/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message }),
+        body: JSON.stringify({
+          messages: [{ role: "user", content: message }],
+        }),
       })
 
       const data = await res.json()
-      const reply = data.reply || "No hubo respuesta del servidor."
+      console.log(data);
+      const reply = data.message || "No hubo respuesta del servidor."
 
       setMessages((prev) => [...prev, { sender: "bot", text: reply }])
     } catch (err) {
