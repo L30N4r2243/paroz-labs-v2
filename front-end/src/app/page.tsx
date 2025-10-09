@@ -41,6 +41,7 @@ export default function Home() {
       {/* Contenido principal */}
       <main
         className={`min-h-screen bg-gradient-to-b from-black to-[#0a093d] flex items-center justify-start px-6 md:px-16 pt-24 ${inter.className}`}
+        id="inicio"
       >
         <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {/* Texto */}
@@ -49,7 +50,7 @@ export default function Home() {
               className={`text-5xl md:text-5xl font-bold leading-tight tracking-tight ${poppins.className}`}
             >
               Escalamos tu negocio <br />
-              con <span className="text-blue-400">Software</span> <br />
+              con <span className="text-blue-900">Software</span> <br />
               entendiendo tu <br />
               realidad.
             </h1>

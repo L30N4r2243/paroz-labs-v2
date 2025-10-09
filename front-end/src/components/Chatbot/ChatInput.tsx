@@ -1,12 +1,21 @@
+"use client"
+
 import { useState } from "react"
 
-export default function ChatInput() {
-  const [message, setMessage] = useState("")
+interface ChatInputProps {
+  onSendMessage: (message: string) => void
+}
 
-  const handleSend = () => {
+export default function ChatInput({ onSendMessage }: ChatInputProps) {
+  const [message, setMessage] = useState("")
+  const [loading, setLoading] = useState(false)
+
+  const handleSend = async () => {
     if (!message.trim()) return
-    alert("Mensaje enviado: " + message) // 🚀 después se conecta al backend
+    setLoading(true)
+    await onSendMessage(message)
     setMessage("")
+    setLoading(false)
   }
 
   return (
@@ -17,13 +26,15 @@ export default function ChatInput() {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && handleSend()}
-        className="flex-1 border rounded-lg px-3 py-2 text-sm text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+        disabled={loading}
+        className="flex-1 border rounded-lg px-3 py-2 text-sm text-black focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
       />
       <button
         onClick={handleSend}
-        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm"
+        disabled={loading}
+        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm disabled:opacity-50"
       >
-        ➤
+        {loading ? "..." : "➤"}
       </button>
     </div>
   )
