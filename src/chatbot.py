@@ -10,8 +10,6 @@ def get_claude_response(messages: list[dict]) -> str:
         api_key = current_app.config["ANTHROPIC_API_KEY"]
         model = current_app.config["CLAUDE_MODEL"]
         
-        # 1. Reforzamos la concisión en el System Prompt
-        # Esta es la clave. Le decimos al modelo cómo debe responder.
         base_prompt = current_app.config["SYSTEM_PROMPT"]
         concise_instruction = (
             " Tu única meta es ayudar al usuario a entender el producto. "
@@ -22,25 +20,17 @@ def get_claude_response(messages: list[dict]) -> str:
 
         client = Anthropic(api_key=api_key)
 
-        # 2. Establecemos un límite estricto de tokens
-        # Un valor como 80-120 es ideal para "pocas oraciones".
-        MAX_TOKENS_FOR_LANDING = 120 
+        MAX_TOKENS_FOR_LANDING = 125 
 
         response = client.messages.create(
             model=model,
-            # Usamos un límite bajo para forzar la brevedad.
             max_tokens=MAX_TOKENS_FOR_LANDING, 
             system=system_prompt,
             messages=messages
         )
 
         text_response = response.content[0].text
-        
-        # 3. Eliminamos la lógica de corte post-procesamiento.
-        # Con un prompt estricto y un max_tokens bajo, Claude ya suele terminar 
-        # la idea de forma más natural. Si el modelo es bueno, no necesitarás la lógica de corte.
 
-        # Si la respuesta se corta, la terminamos en la última oración completa.
         if response.stop_reason == 'max_tokens':
             # Buscamos el final de la última oración (., ?, !)
             last_period = text_response.rfind('.')
