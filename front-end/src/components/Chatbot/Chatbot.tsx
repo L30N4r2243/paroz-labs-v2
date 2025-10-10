@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, ArrowUp } from "lucide-react"
 import ChatMessages from "./ChatMessages"
@@ -14,6 +14,7 @@ interface Message {
 export default function Chatbot() {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
+  const chatContainerRef = useRef<HTMLDivElement>(null)
 
   // 👋 Mensaje inicial al abrir el chat
   useEffect(() => {
@@ -26,6 +27,13 @@ export default function Chatbot() {
       ])
     }
   }, [open])
+
+  // 🧩 Scroll automático al final al agregar mensajes
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight
+    }
+  }, [messages])
 
   const handleSendMessage = async (message: string) => {
     if (!message.trim()) return
@@ -42,7 +50,7 @@ export default function Chatbot() {
       })
 
       const data = await res.json()
-      console.log(data);
+      console.log(data)
       const reply = data.message || "No hubo respuesta del servidor."
 
       setMessages((prev) => [...prev, { sender: "bot", text: reply }])
@@ -70,10 +78,16 @@ export default function Chatbot() {
             {/* Header */}
             <div className="flex justify-between items-center px-4 py-3 bg-blue-800 text-white">
               <h2 className="font-semibold">Paroz Labs AI</h2>
+              <button onClick={() => setOpen(false)}>
+                <X size={20} />
+              </button>
             </div>
 
-            {/* Mensajes */}
-            <div className="flex-1 overflow-y-auto p-4 bg-gray-50">
+            {/* Contenedor general con scroll (único) */}
+            <div
+              ref={chatContainerRef}
+              className="flex flex-col flex-1 overflow-y-auto bg-gray-50 scroll-smooth"
+            >
               <ChatMessages messages={messages} />
             </div>
 
@@ -102,7 +116,7 @@ export default function Chatbot() {
           <>
             <div className="bg-white rounded-full p-1 w-8 h-8 flex items-center justify-center">
               <img
-                src="/logo-sin-fondog.png"
+                src="/logo-sin-fondo.png"
                 alt="Logo Paroz Labs"
                 className="w-6 h-6 object-contain"
               />
