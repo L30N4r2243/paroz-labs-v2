@@ -11,7 +11,7 @@ interface ChatMessagesProps {
 
 export default function ChatMessages({ messages }: ChatMessagesProps) {
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 px-4 py-3">
       {messages.map((msg, index) => (
         <div
           key={index}
