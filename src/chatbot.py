@@ -10,41 +10,21 @@ def get_claude_response(messages: list[dict]) -> str:
         api_key = current_app.config["ANTHROPIC_API_KEY"]
         model = current_app.config["CLAUDE_MODEL"]
         
-        base_prompt = current_app.config["SYSTEM_PROMPT"]
-        concise_instruction = (
-            " Tu única meta es ayudar al usuario a entender el producto. "
-            "Responde de forma **extremadamente concisa y directa**. "
-            "Nunca uses más de 2 oraciones por respuesta, salvo que sea una lista corta."
-        )
-        system_prompt = base_prompt + concise_instruction
+        system_prompt = current_app.config["SYSTEM_PROMPT"]
 
         client = Anthropic(api_key=api_key)
 
-        MAX_TOKENS_FOR_LANDING = 125 
+        # Aumentamos el límite de tokens para permitir respuestas más largas y completas.
+        MAX_TOKENS = 2048
 
         response = client.messages.create(
             model=model,
-            max_tokens=MAX_TOKENS_FOR_LANDING, 
+            max_tokens=MAX_TOKENS,
             system=system_prompt,
             messages=messages
         )
 
         text_response = response.content[0].text
-
-        if response.stop_reason == 'max_tokens':
-            # Buscamos el final de la última oración (., ?, !)
-            last_period = text_response.rfind('.')
-            last_question = text_response.rfind('?')
-            last_exclamation = text_response.rfind('!')
-            last_sentence_end = max(last_period, last_question, last_exclamation)
-
-            if last_sentence_end > -1:
-                text_response = text_response[:last_sentence_end + 1]
-            else:
-                # Si no hay oraciones, cortamos en la última palabra para no dejar una palabra a medias.
-                last_space = text_response.rfind(' ')
-                if last_space != -1:
-                    text_response = text_response[:last_space].strip()
 
         return text_response.strip()
 
