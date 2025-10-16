@@ -27,5 +27,13 @@ def load_system_prompt(file_path="Claude.md"):
                 "frontends como Next.js/TypeScript. Responde de forma técnica, concisa y profesional.")
 
 # Configuraciones del Chatbot:
-CLAUDE_MODEL = "claude-3-haiku-20240307" # Modelo rápido y eficiente
-SYSTEM_PROMPT = load_system_prompt()
+CLAUDE_MODEL = os.getenv("CLAUDE_MODEL", "claude-haiku-4-5-20251001") # Modelo rápido y eficiente
+SYSTEM_PROMPT_FILE = os.getenv("SYSTEM_PROMPT_FILE")
+
+if not SYSTEM_PROMPT_FILE:
+    raise ValueError(
+        "La variable de entorno SYSTEM_PROMPT_FILE no está configurada. "
+        "Por favor, añádela a tu archivo .env."
+    )
+
+SYSTEM_PROMPT = load_system_prompt(SYSTEM_PROMPT_FILE)
