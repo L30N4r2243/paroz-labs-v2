@@ -30,7 +30,7 @@ def get_claude_response(messages: list[dict]) -> str:
 
     except APIStatusError as e:
         # En un entorno de producción, es mejor solo loggear y retornar un mensaje genérico
-        # current_app.logger.error(f"[Claude API Error] {e}")
+        current_app.logger.error(f"[Claude API Error] {e}")
         return "Disculpa, tengo problemas para procesar tu solicitud ahora."
     except Exception as e:
         # current_app.logger.error(f"[Error interno] {e}")

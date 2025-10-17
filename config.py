@@ -37,3 +37,5 @@ if not SYSTEM_PROMPT_FILE:
     )
 
 SYSTEM_PROMPT = load_system_prompt(SYSTEM_PROMPT_FILE)
+
+CORS_ORIGINS = os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
