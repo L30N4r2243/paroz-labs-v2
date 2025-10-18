@@ -1,5 +1,4 @@
 
-# src/__main__.py
 import os
 import sys
 
@@ -15,7 +14,7 @@ def main():
     app = create_app()
     port = int(os.environ.get('PORT', 5000))
     # debug=False para un entorno de producción, True para desarrollo.
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(host='0.0.0.0', port=port, debug=False)
 
 if __name__ == '__main__':
     main()
