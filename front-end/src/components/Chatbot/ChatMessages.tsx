@@ -9,6 +9,16 @@ interface ChatMessagesProps {
   messages: Message[]
 }
 
+const renderTextWithBold = (text: string) => {
+  const parts = text.split(/(\*\*.*?\*\*)/g)
+  return parts.map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return <strong key={index}>{part.slice(2, -2)}</strong>
+    }
+    return part
+  })
+}
+
 export default function ChatMessages({ messages }: ChatMessagesProps) {
   return (
     <div className="flex flex-col gap-3 px-4 py-3">
@@ -21,7 +31,7 @@ export default function ChatMessages({ messages }: ChatMessagesProps) {
               : "self-start bg-gray-300 text-black"
           } px-4 py-2 rounded-lg max-w-[80%] text-sm leading-snug`}
         >
-          {msg.text}
+          {renderTextWithBold(msg.text)}
         </div>
       ))}
     </div>
