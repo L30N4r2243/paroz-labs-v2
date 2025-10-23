@@ -21,7 +21,7 @@ export default function Home() {
     <>
       {/* Header */}
       <header
-        className={`fixed top-0 left-0 w-full bg-black/60 backdrop-blur-md z-50 ${inter.className}`}
+        className={`fixed top-0 left-0 w-full bg-blue/40 backdrop-blur-md z-30 ${inter.className}`}
       >
         <div className="max-w-[1920px] mx-auto flex justify-between items-center py-3 sm:py-4 lg:py-5 xl:py-6 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24 text-white">
           {/* Logo textual */}
@@ -114,7 +114,7 @@ export default function Home() {
 
       {/* Contenido principal */}
       <main
-        className={`min-h-screen bg-gradient-to-b from-black to-[#0a093d] flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24 pt-20 sm:pt-24 md:pt-28 lg:pt-32 ${inter.className}`}
+        className={`min-h-screen bg-gradient-to-b from-blue to-[#2d4a53] flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24 pt-20 sm:pt-24 md:pt-28 lg:pt-32 ${inter.className}`}
         id="inicio"
       >
         <div className="max-w-[1920px] w-full">
@@ -125,7 +125,7 @@ export default function Home() {
                 className={`text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-tight tracking-tight ${poppins.className}`}
               >
                 Escalamos tu negocio <br />
-                con <span className="text-blue-500">Software</span> <br />
+                con <span className="text-[#396477]">Software</span> <br />
                 entendiendo tu <br />
                 realidad.
               </h1>
@@ -151,7 +151,7 @@ export default function Home() {
       <section className="bg-gray-50 py-12 sm:py-14 md:py-16 lg:py-20 xl:py-24 2xl:py-28 text-center" id="servicios">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24 grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 xl:gap-16 2xl:gap-20">
           <div className="flex flex-col items-center text-gray-700 space-y-3 lg:space-y-4 xl:space-y-5">
-            <i className="bi bi-award text-4xl sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-blue-600"></i>
+            <i className="bi bi-award text-4xl sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-[#1a2f38]"></i>
             <p className="text-sm sm:text-base lg:text-lg xl:text-xl 2xl:text-2xl leading-relaxed max-w-md">
               Con más de 15 años en la industria del software, contamos con
               experiencia en todo el ciclo de desarrollo, brindando soluciones
@@ -160,7 +160,7 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col items-center text-gray-700 space-y-3 lg:space-y-4 xl:space-y-5">
-            <i className="bi bi-people text-4xl sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-blue-600"></i>
+            <i className="bi bi-people text-4xl sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-[#1a2f38]"></i>
             <p className="text-sm sm:text-base lg:text-lg xl:text-xl 2xl:text-2xl leading-relaxed max-w-md">
               Trabajamos en estrecha colaboración con nuestros clientes,
               entendiendo su negocio y necesidades para ofrecer resultados
@@ -169,7 +169,7 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col items-center text-gray-700 space-y-3 lg:space-y-4 xl:space-y-5">
-            <i className="bi bi-rocket-takeoff text-4xl sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-blue-600"></i>
+            <i className="bi bi-rocket-takeoff text-4xl sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-[#1a2f38]"></i>
             <p className="text-sm sm:text-base lg:text-lg xl:text-xl 2xl:text-2xl leading-relaxed max-w-md">
               Diseñamos soluciones a medida que se adaptan perfectamente a cada
               cliente, maximizando el valor entregado y el impacto del producto
@@ -234,8 +234,7 @@ export default function Home() {
       </section>
 
       {/* Sección de Contacto */}
-      <section className={`min-h-screen bg-gradient-to-b from-black to-[#0a093d] flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24 pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-12 text-white ${inter.className}`} id="contacto">
-        <div className="max-w-[1920px] mx-auto w-full space-y-8 lg:space-y-12 xl:space-y-16">
+<section className={`min-h-screen bg-[#1a2f38] flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24 pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-12 text-white ${inter.className}`} id="contacto">        <div className="max-w-[1920px] mx-auto w-full space-y-8 lg:space-y-12 xl:space-y-16">
           <div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-3 lg:mb-5">Contáctanos</h2>
             <p className="text-gray-300 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl leading-relaxed max-w-4xl">
@@ -296,28 +295,48 @@ export default function Home() {
   );
 }
 
-// Función para detectar y convertir URLs en enlaces
+/// Función para formatear texto con **negritas**, enlaces y salto de línea antes de links
 function formatMessageWithLinks(text: string) {
   const urlRegex = /(https?:\/\/[^\s]+)/g;
   const parts = text.split(urlRegex);
-  
-  return parts.map((part, index) => {
+
+  return parts.map((part, i) => {
     if (part.match(urlRegex)) {
+      // Es un enlace → agregar salto de línea antes
       return (
-        <a
-          key={index}
-          href={part}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-500 hover:text-blue-600 underline break-all"
-        >
-          {part}
-        </a>
+        <span key={`link-${i}`}>
+          <br />
+          <a
+            href={part}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 hover:text-blue-600 underline break-all"
+          >
+            {part}
+          </a>
+        </span>
       );
+    } else {
+      // Manejar **negritas**
+      const boldRegex = /\*\*(.*?)\*\*/g;
+      const boldParts = part.split(boldRegex);
+
+      return boldParts.map((boldPart, j) => {
+        if (j % 2 === 1) {
+          return (
+            <strong key={`bold-${i}-${j}`} className="font-semibold text-[#1a2f38]">
+              {boldPart}
+            </strong>
+          );
+        } else {
+          return <span key={`text-${i}-${j}`}>{boldPart}</span>;
+        }
+      });
     }
-    return <span key={index}>{part}</span>;
   });
 }
+
+
 
 // Componente de Chatbot Embebido para Desktop
 function EmbeddedChatbot() {
@@ -328,7 +347,7 @@ function EmbeddedChatbot() {
     setMessages([
       {
         sender: "bot",
-        text: "👋 ¡Hola! Soy la IA de Paroz Labs. ¿Cómo puedo ayudarte?",
+        text: "👋 ¡Hola! Soy la RozLab. ¿Cómo puedo ayudarte?",
       },
     ]);
   }, []);
@@ -384,7 +403,7 @@ function EmbeddedChatbot() {
 
   return (
     <div className="w-full h-[22rem] lg:h-[26rem] xl:h-[26rem] 2xl:h-[36rem] bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden border border-gray-200 relative lg:mt-0">
-      {/* Logo de fondo sutil */}
+      {/* Logo de fondo */}
       <div 
         className="absolute inset-0 opacity-[0.4] pointer-events-none bg-cover bg-center bg-no-repeat"
         style={{
@@ -407,7 +426,7 @@ function EmbeddedChatbot() {
             <div
               className={`max-w-[75%] lg:max-w-xs xl:max-w-md 2xl:max-w-lg px-3 sm:px-4 py-2.5 sm:py-3 rounded-2xl shadow-sm ${
                 msg.sender === "user"
-                  ? "bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-br-sm"
+                  ? "bg-[#1a2f38] text-white rounded-br-sm"
                   : "bg-white text-gray-800 rounded-bl-sm border border-gray-200 shadow-sm"
               }`}
             >
@@ -454,11 +473,11 @@ function EmbeddedChatInput({ onSendMessage }: { onSendMessage: (msg: string) => 
         onChange={(e) => setInput(e.target.value)}
         onKeyPress={handleKeyPress}
         placeholder="Escribe tu mensaje aquí..."
-        className="flex-1 px-3 sm:px-4 py-2 sm:py-2.5 lg:py-3 text-gray-800 bg-gray-50 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder:text-gray-500 text-xs sm:text-sm lg:text-base xl:text-lg"
+        className="flex-1 px-3 sm:px-4 py-2 sm:py-2.5 lg:py-3 text-gray-800 bg-gray-50 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#1a2f38] focus:border-transparent placeholder:text-gray-500 text-xs sm:text-sm lg:text-base xl:text-lg"
       />
       <button
         onClick={(e) => handleSubmit(e as any)}
-        className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-2.5 sm:p-3 lg:p-3.5 rounded-full hover:from-blue-700 hover:to-blue-800 transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+        className="bg-[#1a2f38] text-white rounded-br-sm rounded-full p-2 sm:p-2.5 lg:p-3 hover:bg-[#16232a] transition disabled:opacity-50 flex items-center justify-center"
         disabled={!input.trim()}
       >
         <svg
