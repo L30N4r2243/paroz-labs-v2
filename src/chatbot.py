@@ -33,5 +33,5 @@ def get_claude_response(messages: list[dict]) -> str:
         current_app.logger.error(f"[Claude API Error] {e}")
         return "Disculpa, tengo problemas para procesar tu solicitud ahora."
     except Exception as e:
-        # current_app.logger.error(f"[Error interno] {e}")
+        current_app.logger.error(f"[Error interno] {e}")
         return "Algo inesperado ocurrió en el servidor. Por favor, inténtalo de nuevo."
