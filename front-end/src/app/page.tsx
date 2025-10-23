@@ -8,6 +8,18 @@ const poppins = Poppins({ subsets: ["latin"], weight: ["600", "700"] });
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Efecto para detectar scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -19,32 +31,58 @@ export default function Home() {
 
   return (
     <>
-      {/* Header */}
+      {/* Header mejorado */}
       <header
-        className={`fixed top-0 left-0 w-full bg-blue/40 backdrop-blur-md z-30 ${inter.className}`}
+        className={`fixed top-0 left-0 w-full z-30 transition-all duration-500 ${
+          isScrolled 
+            ? "bg-white/95 backdrop-blur-lg shadow-lg" 
+            : "bg-blue/40 backdrop-blur-md"
+        } ${inter.className}`}
       >
-        <div className="max-w-[1920px] mx-auto flex justify-between items-center py-3 sm:py-4 lg:py-5 xl:py-6 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24 text-white">
+        <div className="max-w-[1920px] mx-auto flex justify-between items-center py-3 sm:py-4 lg:py-5 xl:py-6 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
           {/* Logo textual */}
           <span className={`flex items-center ${poppins.className}`}>
             <img
               src="/image.png"
               alt=""
-              className="w-20 h-auto xs:w-24 sm:w-28 md:w-32 lg:w-40 xl:w-48 2xl:w-56 object-contain"
+              className={`w-20 h-auto xs:w-24 sm:w-28 md:w-32 lg:w-40 xl:w-48 2xl:w-56 object-contain transition-all duration-500 ${
+                isScrolled ? "brightness-0" : "brightness-100"
+              }`}
             />
           </span>
 
           {/* Navegación Desktop */}
           <nav className="hidden lg:flex space-x-6 xl:space-x-10 2xl:space-x-12 text-sm xl:text-base 2xl:text-lg">
-            <a href="#inicio" className="hover:text-blue-400 transition-colors">
+            <a 
+              href="#inicio" 
+              className={`transition-all duration-500 hover:text-blue-400 ${
+                isScrolled ? "text-gray-800" : "text-white"
+              }`}
+            >
               Inicio
             </a>
-            <a href="#servicios" className="hover:text-blue-400 transition-colors">
+            <a 
+              href="#servicios" 
+              className={`transition-all duration-500 hover:text-blue-400 ${
+                isScrolled ? "text-gray-800" : "text-white"
+              }`}
+            >
               Servicios
             </a>
-            <a href="#nosotros" className="hover:text-blue-400 transition-colors">
+            <a 
+              href="#nosotros" 
+              className={`transition-all duration-500 hover:text-blue-400 ${
+                isScrolled ? "text-gray-800" : "text-white"
+              }`}
+            >
               Nosotros
             </a>
-            <a href="#contacto" className="hover:text-blue-400 transition-colors">
+            <a 
+              href="#contacto" 
+              className={`transition-all duration-500 hover:text-blue-400 ${
+                isScrolled ? "text-gray-800" : "text-white"
+              }`}
+            >
               Contacto
             </a>
           </nav>
@@ -56,18 +94,30 @@ export default function Home() {
             aria-label="Toggle menu"
           >
             <span
-              className={`block w-6 h-0.5 bg-white transition-all duration-300 ${
-                isMenuOpen ? "rotate-45 translate-y-1.5" : ""
+              className={`block w-6 h-0.5 transition-all duration-300 ${
+                isMenuOpen 
+                  ? "rotate-45 translate-y-1.5 bg-gray-800" 
+                  : isScrolled 
+                    ? "bg-gray-800" 
+                    : "bg-white"
               }`}
             ></span>
             <span
-              className={`block w-6 h-0.5 bg-white transition-all duration-300 mt-1.5 ${
-                isMenuOpen ? "opacity-0" : ""
+              className={`block w-6 h-0.5 transition-all duration-300 mt-1.5 ${
+                isMenuOpen 
+                  ? "opacity-0" 
+                  : isScrolled 
+                    ? "bg-gray-800" 
+                    : "bg-white"
               }`}
             ></span>
             <span
-              className={`block w-6 h-0.5 bg-white transition-all duration-300 mt-1.5 ${
-                isMenuOpen ? "-rotate-45 -translate-y-1.5" : ""
+              className={`block w-6 h-0.5 transition-all duration-300 mt-1.5 ${
+                isMenuOpen 
+                  ? "-rotate-45 -translate-y-1.5 bg-gray-800" 
+                  : isScrolled 
+                    ? "bg-gray-800" 
+                    : "bg-white"
               }`}
             ></span>
           </button>
@@ -75,38 +125,58 @@ export default function Home() {
 
         {/* Menú Mobile */}
         <nav
-          className={`lg:hidden bg-black/95 backdrop-blur-md overflow-hidden transition-all duration-300 ${
+          className={`lg:hidden overflow-hidden transition-all duration-500 ${
             isMenuOpen ? "max-h-64" : "max-h-0"
+          } ${
+            isScrolled 
+              ? "bg-white/95 backdrop-blur-lg shadow-lg" 
+              : "bg-black/95 backdrop-blur-md"
           }`}
         >
           <div className="flex flex-col space-y-4 px-4 py-6">
             <a
               href="#inicio"
               onClick={closeMenu}
-              className="text-white hover:text-blue-400 transition-colors text-base sm:text-lg"
+              className={`transition-colors text-base sm:text-lg ${
+                isScrolled 
+                  ? "text-gray-800 hover:text-blue-600" 
+                  : "text-white hover:text-blue-400"
+              }`}
             >
               Inicio
             </a>
             <a
               href="#servicios"
               onClick={closeMenu}
-              className="text-white hover:text-blue-400 transition-colors text-base sm:text-lg"
+              className={`transition-colors text-base sm:text-lg ${
+                isScrolled 
+                  ? "text-gray-800 hover:text-blue-600" 
+                  : "text-white hover:text-blue-400"
+              }`}
             >
               Servicios
             </a>
             <a
               href="#nosotros"
               onClick={closeMenu}
-              className="text-white hover:text-blue-400 transition-colors text-base sm:text-lg"
+              className={`transition-colors text-base sm:text-lg ${
+                isScrolled 
+                  ? "text-gray-800 hover:text-blue-600" 
+                  : "text-white hover:text-blue-400"
+              }`}
             >
               Nosotros
             </a>
             <a
               href="#contacto"
               onClick={closeMenu}
-              className="text-white hover:text-blue-400 transition-colors text-base sm:text-lg"
+              className={`transition-colors text-base sm:text-lg ${
+                isScrolled 
+                  ? "text-gray-800 hover:text-blue-600" 
+                  : "text-white hover:text-blue-400"
+              }`}
             >
-              Contacto
+                Contacto
             </a>
           </div>
         </nav>
