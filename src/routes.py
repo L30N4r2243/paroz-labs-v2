@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify, current_app
 from .chatbot import get_claude_response
+from .services.calendly import get_user_information
 
 # Usamos un Blueprint para organizar las rutas de forma modular.
 api = Blueprint('api', __name__)
@@ -40,3 +41,11 @@ def status():
         "service": "Backend Chatbot API",
         "model": current_app.config.get('CLAUDE_MODEL')
     }), 200
+
+@api.route("/api/calendly-user", methods=["GET"])
+def calendly_user():
+    """
+    Endpoint para obtener la información del usuario de Calendly.
+    """
+    data, status_code = get_user_information()
+    return jsonify(data), status_code
