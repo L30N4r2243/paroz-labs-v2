@@ -50,3 +50,38 @@ def get_event_types():
     except requests.exceptions.RequestException as e:
         current_app.logger.error(f"Error al obtener los tipos de evento de Calendly: {e}")
         return {"error": "No se pudo obtener los tipos de evento de Calendly."}, 503
+    
+def create_scheduling_link(event_type_uri: str, user_name: str, user_email: str):
+    """
+    Crea un enlace de programación de un solo uso para un tipo de evento específico.
+    """
+    api_key = current_app.config.get("CALENDLY_API_KEY")
+    if not api_key:
+        return {"error": "API key de Calendly no configurada."}, 500
+    
+    url = "https://api.calendly.com/scheduling_links"
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "max_event_count": 1,
+        "owner": event_type_uri,
+        "owner_type": "EventType",
+        "prefill": {
+            "name": user_name,
+            "email": user_email
+        }
+    }
+    
+    try:
+        response = requests.post(url, json=payload, headers=headers)
+        response.raise_for_status()
+        booking_url = response.json().get("resource", {}).get("booking_url")
+        if not booking_url:
+            return {"error": "No se pudo obtener la URL de reserva del recurso."}, 500
+        return {"booking_url": booking_url}, 200
+    except requests.exceptions.RequestException as e:
+        current_app.logger.error(f"Error al crear el enlace de programación de Calendly: {e}")
+        error_details = e.response.json() if e.response else str(e)
+        return {"error": "No se pudo crear el enlace de programación.", "details": error_details}, 503
