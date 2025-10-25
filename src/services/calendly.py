@@ -18,8 +18,35 @@ def get_user_information():
 
     try:
         response = requests.get(url, headers=headers)
-        response.raise_for_status(), 200
+        response.raise_for_status()
         return response.json(), 200
     except requests.exceptions.RequestException as e:
         current_app.logger.error(f"Error de conexión con Calendlly: {e}")
         return {"error": "No se pudo conectar con el servicio de Calendly."}, 503
+
+def get_event_types():
+    """
+    Obtiene los tipos de eventos de un usuario de la API de Calendly
+    """
+    user_data, status_code = get_user_information()
+    if status_code != 200:
+        return user_data, status_code
+    
+    user_uri = user_data.get("resource", {}).get("uri")
+    if not user_uri:
+        return {"error": "No se pudo obtener el URI del usuario de Calendly."}, 500
+    
+    api_key = current_app.config.get("CALENDLY_API_KEY")
+    url = f"https://api.calendly.com/event_types?user={user_uri}"
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json"
+    }
+
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
+        return response.json(), 200
+    except requests.exceptions.RequestException as e:
+        current_app.logger.error(f"Error al obtener los tipos de evento de Calendly: {e}")
+        return {"error": "No se pudo obtener los tipos de evento de Calendly."}, 503
