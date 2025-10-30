@@ -7,12 +7,19 @@ load_dotenv()
 
 # Obtener la clave de Anthropic.
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+CALENDLY_API_KEY = os.getenv("CALENDLY_API_KEY");
 
 # **IMPORTANTE:** Si la clave falta, el servidor no debe iniciarse.
 if not ANTHROPIC_API_KEY:
     raise ValueError(
         "La clave ANTHROPIC_API_KEY no está configurada en el archivo .env. "
         "Por favor, revisa tu archivo .env."
+    )
+
+if not CALENDLY_API_KEY: 
+    raise ValueError(
+        "La clave CALENDLY_API_KEY no está configurada en el archivo .env"
+        "Revisa el archivo .env"
     )
 
 # --- Cargar el System Prompt desde Claude.md ---

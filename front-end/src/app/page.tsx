@@ -10,7 +10,6 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Efecto para detectar scroll
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -31,7 +30,7 @@ export default function Home() {
 
   return (
     <>
-      {/* Header mejorado */}
+      {/* Header */}
       <header
         className={`fixed top-0 left-0 w-full z-30 transition-all duration-500 ${
           isScrolled 
@@ -40,7 +39,6 @@ export default function Home() {
         } ${inter.className}`}
       >
         <div className="max-w-[1920px] mx-auto flex justify-between items-center py-3 sm:py-4 lg:py-5 xl:py-6 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
-          {/* Logo textual */}
           <span className={`flex items-center ${poppins.className}`}>
             <img
               src="/image.png"
@@ -51,7 +49,6 @@ export default function Home() {
             />
           </span>
 
-          {/* Navegación Desktop */}
           <nav className="hidden lg:flex space-x-6 xl:space-x-10 2xl:space-x-12 text-sm xl:text-base 2xl:text-lg">
             <a 
               href="#inicio" 
@@ -87,7 +84,6 @@ export default function Home() {
             </a>
           </nav>
 
-          {/* Botón Hamburguesa Mobile */}
           <button
             onClick={toggleMenu}
             className="lg:hidden flex flex-col justify-center items-center w-10 h-10 focus:outline-none"
@@ -123,7 +119,6 @@ export default function Home() {
           </button>
         </div>
 
-        {/* Menú Mobile */}
         <nav
           className={`lg:hidden overflow-hidden transition-all duration-500 ${
             isMenuOpen ? "max-h-64" : "max-h-0"
@@ -176,7 +171,7 @@ export default function Home() {
                   : "text-white hover:text-blue-400"
               }`}
             >
-                Contacto
+              Contacto
             </a>
           </div>
         </nav>
@@ -189,7 +184,6 @@ export default function Home() {
       >
         <div className="max-w-[1920px] w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 2xl:gap-20 items-start">
-            {/* Texto */}
             <div className="text-left text-white space-y-4 lg:space-y-6">
               <h1
                 className={`text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-tight tracking-tight ${poppins.className}`}
@@ -204,20 +198,18 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Chatbot Embebido - Desktop */}
             <div className="hidden lg:block w-full">
               <EmbeddedChatbot />
             </div>
           </div>
 
-          {/* Chatbot Embebido - Mobile/Tablet (debajo del texto) */}
           <div className="lg:hidden w-full mt-8 sm:mt-10 md:mt-12">
             <EmbeddedChatbot />
           </div>
         </div>
       </main>
 
-      {/* Sección de iconos con Bootstrap Icons */}
+      {/* Sección de servicios */}
       <section className="bg-gray-50 py-12 sm:py-14 md:py-16 lg:py-20 xl:py-24 2xl:py-28 text-center" id="servicios">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24 grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 xl:gap-16 2xl:gap-20">
           <div className="flex flex-col items-center text-gray-700 space-y-3 lg:space-y-4 xl:space-y-5">
@@ -253,9 +245,9 @@ export default function Home() {
         </h2>
       </section>
 
+      {/* Sección Nosotros */}
       <section className="bg-white py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 text-gray-800" id="nosotros">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 2xl:gap-20 items-center">
-          {/* Texto */}
           <div className="space-y-4 lg:space-y-6">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold font-[cursive] text-black">
               Nuestra Filosofía
@@ -274,7 +266,6 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Imagen */}
           <div className="flex justify-center lg:justify-end">
             <img
               src="/logo-sin-fondo.png"
@@ -284,13 +275,11 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Subtítulo */}
         <div className="text-center mt-12 sm:mt-16 lg:mt-20 xl:mt-24 2xl:mt-28 px-4 space-y-6 lg:space-y-8">
           <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold text-gray-900">
             ¿Te gustaría trabajar con nosotros?
           </h3>
 
-          {/* Botón de LinkedIn */}
           <a
             href="https://www.linkedin.com/company/parozlabs"
             target="_blank"
@@ -304,7 +293,8 @@ export default function Home() {
       </section>
 
       {/* Sección de Contacto */}
-<section className={`min-h-screen bg-[#1a2f38] flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24 pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-12 text-white ${inter.className}`} id="contacto">        <div className="max-w-[1920px] mx-auto w-full space-y-8 lg:space-y-12 xl:space-y-16">
+      <section className={`min-h-screen bg-[#1a2f38] flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24 pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-12 text-white ${inter.className}`} id="contacto">
+        <div className="max-w-[1920px] mx-auto w-full space-y-8 lg:space-y-12 xl:space-y-16">
           <div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-3 lg:mb-5">Contáctanos</h2>
             <p className="text-gray-300 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl leading-relaxed max-w-4xl">
@@ -313,23 +303,19 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Cuadros de contacto */}
           <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 xl:gap-8 2xl:gap-10">
-            {/* Email */}
             <div className="bg-[#294152] p-5 sm:p-6 lg:p-7 xl:p-8 2xl:p-10 rounded-2xl flex flex-col items-center justify-center space-y-2 lg:space-y-3 hover:bg-[#345566] transition-colors">
               <i className="bi bi-envelope-fill text-2xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-white"></i>
               <h3 className="text-base sm:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-semibold">Email</h3>
               <p className="text-gray-200 text-xs sm:text-sm lg:text-base xl:text-lg 2xl:text-xl text-center break-all">hola@parozlabs.com</p>
             </div>
 
-            {/* Agenda */}
             <div className="bg-[#294152] p-5 sm:p-6 lg:p-7 xl:p-8 2xl:p-10 rounded-2xl flex flex-col items-center justify-center space-y-2 lg:space-y-3 hover:bg-[#345566] transition-colors">
               <i className="bi bi-calendar-event-fill text-2xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-white"></i>
               <h3 className="text-base sm:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-semibold">Agenda</h3>
-              <p className="text-gray-200 text-xs sm:text-sm lg:text-base xl:text-lg 2xl:text-xl text-center">Agenda una cita sin compromiso</p>
+              <p className="text-gray-200 text-xs sm:text-sm lg:text-base xl:text-lg 2xl:text-xl text-center">Agenda una cita a través del chat</p>
             </div>
 
-            {/* LinkedIn */}
             <div className="bg-[#294152] p-5 sm:p-6 lg:p-7 xl:p-8 2xl:p-10 rounded-2xl flex flex-col items-center justify-center space-y-2 lg:space-y-3 hover:bg-[#345566] transition-colors">
               <i className="bi bi-linkedin text-2xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-white"></i>
               <h3 className="text-base sm:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-semibold">LinkedIn</h3>
@@ -343,7 +329,6 @@ export default function Home() {
               </a>
             </div>
 
-            {/* Ubicación */}
             <div className="bg-[#294152] p-5 sm:p-6 lg:p-7 xl:p-8 2xl:p-10 rounded-2xl flex flex-col items-center justify-center space-y-2 lg:space-y-3 hover:bg-[#345566] transition-colors">
               <i className="bi bi-geo-alt-fill text-2xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-white"></i>
               <h3 className="text-base sm:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-semibold">Ubicación</h3>
@@ -355,7 +340,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Footer inferior */}
           <footer className="text-gray-400 text-xs sm:text-sm lg:text-base xl:text-lg 2xl:text-xl text-center lg:text-left pt-8">
             © 2025 <span className="text-white font-semibold">Paroz Labs</span> — Todos los derechos reservados
           </footer>
@@ -365,14 +349,12 @@ export default function Home() {
   );
 }
 
-/// Función para formatear texto con **negritas**, enlaces y salto de línea antes de links
 function formatMessageWithLinks(text: string) {
   const urlRegex = /(https?:\/\/[^\s]+)/g;
   const parts = text.split(urlRegex);
 
   return parts.map((part, i) => {
     if (part.match(urlRegex)) {
-      // Es un enlace → agregar salto de línea antes
       return (
         <span key={`link-${i}`}>
           <br />
@@ -387,7 +369,6 @@ function formatMessageWithLinks(text: string) {
         </span>
       );
     } else {
-      // Manejar **negritas**
       const boldRegex = /\*\*(.*?)\*\*/g;
       const boldParts = part.split(boldRegex);
 
@@ -406,11 +387,13 @@ function formatMessageWithLinks(text: string) {
   });
 }
 
-
-
-// Componente de Chatbot Embebido para Desktop
 function EmbeddedChatbot() {
   const [messages, setMessages] = useState<{ sender: "user" | "bot"; text: string }[]>([]);
+  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
+  const [calendlyUrl, setCalendlyUrl] = useState("");
+  const [userInfo, setUserInfo] = useState<{ name: string; email: string } | null>(null);
+  const [awaitingName, setAwaitingName] = useState(false);
+  const [awaitingEmail, setAwaitingEmail] = useState(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -444,11 +427,118 @@ function EmbeddedChatbot() {
     }
   }, [messages]);
 
+  const [prefillInfo, setPrefillInfo] = useState<{ name: string; email: string } | null>(null);
+
+  const openCalendlyWithUserInfo = async (name: string, email: string) => {
+    try {
+      setPrefillInfo({ name, email });
+      setMessages((prev) => [
+        ...prev,
+        { sender: "bot", text: "Perfecto, estoy preparando tu agenda personalizada... 📅" },
+      ]);
+
+      // Obtener tipos de eventos
+      const eventTypesResponse = await fetch("http://localhost:5000/api/calendly-event", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!eventTypesResponse.ok) {
+        throw new Error("Error al obtener los tipos de eventos");
+      }
+
+      const eventTypesData = await eventTypesResponse.json();
+      const eventTypes = eventTypesData.collection || [];
+
+      if (eventTypes.length === 0) {
+        setMessages((prev) => [
+          ...prev,
+          { sender: "bot", text: "Lo siento, no hay tipos de eventos disponibles en este momento. Por favor, intenta más tarde." },
+        ]);
+        return;
+      }
+
+      // Usar el primer tipo de evento disponible
+      const eventTypeUri = eventTypes[0].uri;
+
+      // Crear el enlace de programación
+      const schedulingResponse = await fetch("http://localhost:5000/api/calendly-create-link", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          event_type_uri: eventTypeUri,
+          user_name: name,
+          user_email: email,
+        }),
+      });
+
+      if (!schedulingResponse.ok) {
+        throw new Error("Error al crear el enlace de programación");
+      }
+
+      const schedulingData = await schedulingResponse.json();
+      const bookingUrl = schedulingData.booking_url;
+
+      if (bookingUrl) {
+        setCalendlyUrl(bookingUrl);
+        setIsCalendlyOpen(true);
+        setMessages((prev) => [
+          ...prev,
+          { sender: "bot", text: "¡Listo! Se ha abierto tu calendario personalizado. Elige el horario que mejor te convenga. ✨" },
+        ]);
+      } else {
+        setMessages((prev) => [
+          ...prev,
+          { sender: "bot", text: "Lo siento, hubo un problema al generar tu agenda. Por favor, intenta nuevamente." },
+        ]);
+      }
+    } catch (error) {
+      console.error("Error al abrir Calendly:", error);
+      setMessages((prev) => [
+        ...prev,
+        { sender: "bot", text: "Hubo un error al cargar el calendario. Por favor, intenta nuevamente más tarde." },
+      ]);
+    }
+  };
+
   const handleSendMessage = async (message: string) => {
     if (!message.trim()) return;
 
     setMessages((prev) => [...prev, { sender: "user", text: message }]);
 
+    // Si estamos esperando el nombre
+    if (awaitingName) {
+      setUserInfo({ name: message, email: "" });
+      setAwaitingName(false);
+      setAwaitingEmail(true);
+      setMessages((prev) => [
+        ...prev,
+        { sender: "bot", text: `Encantado de conocerte, ${message}! 😊\n\nPor favor, dime tu email para enviarte la confirmación de la reunión.` },
+      ]);
+      return;
+    }
+
+    // Si estamos esperando el email
+    if (awaitingEmail && userInfo) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(message)) {
+        setMessages((prev) => [
+          ...prev,
+          { sender: "bot", text: "Ese no parece un email válido. Por favor, ingresa un email correcto (ejemplo: tu@email.com)" },
+        ]);
+        return;
+      }
+
+      setAwaitingEmail(false);
+      await openCalendlyWithUserInfo(userInfo.name, message);
+      return;
+    }
+
+    // Flujo normal del chat
     try {
       const res = await fetch("http://localhost:5000/api/chat", {
         method: "POST",
@@ -459,7 +549,18 @@ function EmbeddedChatbot() {
       });
 
       const data = await res.json();
-      const reply = data.message || "No hubo respuesta del servidor.";
+      let reply = data.message || "No hubo respuesta del servidor.";
+
+      // Detectar si el usuario quiere agendar una reunión
+      const scheduleKeywords = ["agendar", "reunión", "reunion", "cita", "calendario", "meeting", "agenda", "agendar cita"];
+      const userWantsToSchedule = scheduleKeywords.some(keyword => 
+        message.toLowerCase().includes(keyword)
+      );
+
+      if (userWantsToSchedule) {
+        reply = "¡Excelente! Me encantaría agendar una reunión contigo. 📅\n\nPara personalizar tu experiencia, ¿cuál es tu nombre?";
+        setAwaitingName(true);
+      }
 
       setMessages((prev) => [...prev, { sender: "bot", text: reply }]);
     } catch (err) {
@@ -471,52 +572,63 @@ function EmbeddedChatbot() {
     }
   };
 
+  const closeCalendly = () => {
+    setIsCalendlyOpen(false);
+    setCalendlyUrl("");
+    setUserInfo(null);
+    setAwaitingName(false);
+    setAwaitingEmail(false);
+  };
+
   return (
-    <div className="w-full h-[22rem] lg:h-[26rem] xl:h-[26rem] 2xl:h-[36rem] bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden border border-gray-200 relative lg:mt-0">
-      {/* Logo de fondo */}
-      <div 
-        className="absolute inset-0 opacity-[0.4] pointer-events-none bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('/logo-sin-fondo.png')",
-          backgroundSize: "80%",
-          backgroundPosition: "center 30%"
-        }}
-      />
+    <>
+      <div className="w-full h-[22rem] lg:h-[26rem] xl:h-[26rem] 2xl:h-[36rem] bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden border border-gray-200 relative lg:mt-0">
+        <div 
+          className="absolute inset-0 opacity-[0.4] pointer-events-none bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/logo-sin-fondo.png')",
+            backgroundSize: "80%",
+            backgroundPosition: "center 30%"
+          }}
+        />
 
-      {/* Mensajes */}
-      <div
-        ref={chatContainerRef}
-        className="flex flex-col flex-1 overflow-y-auto px-4 sm:px-5 lg:px-6 xl:px-7 py-4 lg:py-5 space-y-3 lg:space-y-4 relative z-10"
-      >
-        {messages.map((msg, i) => (
-          <div
-            key={i}
-            className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
-          >
+        <div
+          ref={chatContainerRef}
+          className="flex flex-col flex-1 overflow-y-auto px-4 sm:px-5 lg:px-6 xl:px-7 py-4 lg:py-5 space-y-3 lg:space-y-4 relative z-10"
+        >
+          {messages.map((msg, i) => (
             <div
-              className={`max-w-[75%] lg:max-w-xs xl:max-w-md 2xl:max-w-lg px-3 sm:px-4 py-2.5 sm:py-3 rounded-2xl shadow-sm ${
-                msg.sender === "user"
-                  ? "bg-[#1a2f38] text-white rounded-br-sm"
-                  : "bg-white text-gray-800 rounded-bl-sm border border-gray-200 shadow-sm"
-              }`}
+              key={i}
+              className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
             >
-              <p className="text-xs sm:text-sm lg:text-base xl:text-lg 2xl:text-xl leading-relaxed whitespace-pre-wrap break-words" style={{ lineHeight: '1.8' }}>
-                {formatMessageWithLinks(msg.text)}
-              </p>
+              <div
+                className={`max-w-[75%] lg:max-w-xs xl:max-w-md 2xl:max-w-lg px-3 sm:px-4 py-2.5 sm:py-3 rounded-2xl shadow-sm ${
+                  msg.sender === "user"
+                    ? "bg-[#1a2f38] text-white rounded-br-sm"
+                    : "bg-white text-gray-800 rounded-bl-sm border border-gray-200 shadow-sm"
+                }`}
+              >
+                <p className="text-xs sm:text-sm lg:text-base xl:text-lg 2xl:text-xl leading-relaxed whitespace-pre-wrap break-words" style={{ lineHeight: '1.8' }}>
+                  {formatMessageWithLinks(msg.text)}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
+        <div className="px-4 sm:px-5 lg:px-6 xl:px-7 py-3 sm:py-4 bg-white border-t border-gray-200 relative z-10">
+          <EmbeddedChatInput onSendMessage={handleSendMessage} />
+        </div>
       </div>
 
-      {/* Input */}
-      <div className="px-4 sm:px-5 lg:px-6 xl:px-7 py-3 sm:py-4 bg-white border-t border-gray-200 relative z-10">
-        <EmbeddedChatInput onSendMessage={handleSendMessage} />
-      </div>
-    </div>
+      {/* Modal de Calendly */}
+      {isCalendlyOpen && calendlyUrl && (
+        <CalendlyModal url={calendlyUrl} onClose={closeCalendly} prefill={prefillInfo} />
+      )}
+    </>
   );
 }
 
-// Input del chat embebido
 function EmbeddedChatInput({ onSendMessage }: { onSendMessage: (msg: string) => void }) {
   const [input, setInput] = useState("");
 
@@ -561,6 +673,123 @@ function EmbeddedChatInput({ onSendMessage }: { onSendMessage: (msg: string) => 
           <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
         </svg>
       </button>
+    </div>
+  );
+}
+
+// Componente Modal de Calendly
+function CalendlyModal({ url, onClose, prefill }: { url: string; onClose: () => void; prefill: { name: string; email: string } | null }) {
+  useEffect(() => {
+    // Cargar el script de Calendly
+    const script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.async = true;
+
+    script.onload = () => {
+      if (url) {
+        const widgetContainer = document.getElementById('calendly-widget-container');
+        if (widgetContainer && (window as any).Calendly) {
+          (window as any).Calendly.initInlineWidget({
+            url: url,
+            parentElement: widgetContainer,
+            prefill: {
+              name: prefill?.name || '',
+              email: prefill?.email || '',
+            },
+          });
+        }
+      }
+    };
+
+    document.body.appendChild(script);
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.removeChild(script);
+      document.body.style.overflow = 'unset';
+    };
+  }, [url, prefill]);
+
+  useEffect(() => {
+    // Escuchar eventos de Calendly
+    const handleMessage = (e: MessageEvent) => {
+      if (e.data.event && e.data.event.indexOf('calendly') === 0) {
+        if (e.data.event === 'calendly.event_scheduled') {
+          console.log('Evento agendado:', e.data.payload);
+          // Cerrar modal después de agendar
+          setTimeout(() => {
+            onClose();
+          }, 2000);
+        }
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, [onClose]);
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm p-4 animate-fadeIn">
+      <div className="relative w-full max-w-5xl h-[90vh] bg-white rounded-2xl shadow-2xl overflow-hidden animate-scaleIn">
+        {/* Botón de cerrar */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 z-10 bg-white hover:bg-gray-100 text-gray-800 rounded-full p-2 shadow-lg transition-all duration-200 hover:scale-110"
+          aria-label="Cerrar"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+
+        {/* Widget de Calendly */}
+        <div 
+          id="calendly-widget-container"
+          className="h-full w-full" 
+          style={{ minWidth: '320px', height: '100%' }}
+        />
+      </div>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes scaleIn {
+          from {
+            transform: scale(0.95);
+            opacity: 0;
+          }
+          to {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+
+        .animate-fadeIn {
+          animation: fadeIn 0.2s ease-out;
+        }
+
+        .animate-scaleIn {
+          animation: scaleIn 0.3s ease-out;
+        }
+      `}</style>
     </div>
   );
 }
