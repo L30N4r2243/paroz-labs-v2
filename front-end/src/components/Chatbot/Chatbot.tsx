@@ -2,8 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { X, ArrowUp } from "lucide-react"
-import ChatMessages from "./ChatMessages"
+import { X } from "lucide-react"
 import ChatInput from "./ChatInput"
 
 interface Message {
@@ -37,23 +36,7 @@ function formatMessageWithLinks(text: string) {
 export default function Chatbot() {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
-  const [isVisible, setIsVisible] = useState(false)
   const chatContainerRef = useRef<HTMLDivElement>(null)
-
-  // 🔍 Detectar scroll para mostrar/ocultar el botón
-  useEffect(() => {
-    const handleScroll = () => {
-      // Mostrar el botón después de scrollear 300px
-      if (window.scrollY > 300) {
-        setIsVisible(true)
-      } else {
-        setIsVisible(false)
-      }
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
 
   // 👋 Mensaje inicial al abrir el chat
   useEffect(() => {
@@ -65,7 +48,7 @@ export default function Chatbot() {
         },
       ])
     }
-  }, [open])
+  }, [open, messages.length])
 
   // 🧩 Scroll automático al final al agregar mensajes
   useEffect(() => {

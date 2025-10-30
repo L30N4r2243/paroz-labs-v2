@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 
 export default function useAutoScroll<T extends HTMLElement>(
   containerRef: React.RefObject<T | null>,
-  deps: any[]
+  deps: React.DependencyList
 ) {
   const [showScrollButton, setShowScrollButton] = useState(false)
   const isUserNearBottom = useRef(true)
@@ -22,6 +22,7 @@ export default function useAutoScroll<T extends HTMLElement>(
     return () => el.removeEventListener("scroll", handleScroll)
   }, [containerRef])
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const el = containerRef.current
     if (!el) return
