@@ -13,8 +13,7 @@ def create_app():
     app.config.from_pyfile(config_path)
 
     # Inicializar CORS con orígenes específicos para las rutas de la API
-    origins = app.config.get("CORS_ORIGINS", "*")
-    CORS(app, origins=origins)
+    CORS(app)
 
     # Registrar los Blueprints (módulos de rutas)
     from .routes import api as api_blueprint
