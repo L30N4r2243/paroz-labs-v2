@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, type DependencyList, type RefObject } from "react"
 
 export default function useAutoScroll<T extends HTMLElement>(
-  containerRef: React.RefObject<T | null>,
-  deps: React.DependencyList
+  containerRef: RefObject<T | null>,
+  deps: DependencyList
 ) {
   const [showScrollButton, setShowScrollButton] = useState(false)
   const isUserNearBottom = useRef(true)
