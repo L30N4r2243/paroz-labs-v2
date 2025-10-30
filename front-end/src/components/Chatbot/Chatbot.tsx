@@ -118,41 +118,7 @@ export default function Chatbot() {
     }
   }
 
-  // No mostrar nada si no es visible (excepto en mobile)
-  if (!isVisible) {
-    return (
-      <div className="md:hidden fixed bottom-5 right-5 z-50">
-        <motion.button
-          onClick={() => setOpen(!open)}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className={`transition-all duration-300 shadow-lg ${
-            open
-              ? "h-14 w-14 flex items-center justify-center rounded-full bg-blue-600 text-white hover:bg-blue-700"
-              : "flex items-center gap-3 px-4 py-2 bg-[#0a093d] text-white rounded-full hover:bg-[#14126d]"
-          }`}
-        >
-          {open ? (
-            <X size={26} />
-          ) : (
-            <>
-              <div className="bg-white rounded-full p-1 w-8 h-8 flex items-center justify-center">
-                <img
-                  src="/logo-sin-fondo.png"
-                  alt="Logo Paroz Labs"
-                  className="w-6 h-6 object-contain"
-                />
-              </div>
-              <span className="font-medium text-sm whitespace-nowrap">
-                Paroz Labs AI
-              </span>
-              <ArrowUp size={18} className="ml-1" />
-            </>
-          )}
-        </motion.button>
-      </div>
-    )
-  }
+  
 
   return (
     <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end">
