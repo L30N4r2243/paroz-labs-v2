@@ -1,6 +1,7 @@
 "use client";
 
 import { Inter, Poppins } from "next/font/google";
+import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"] });
@@ -66,9 +67,12 @@ export default function Home() {
         <div className="max-w-[1920px] mx-auto flex justify-between items-center py-3 sm:py-4 lg:py-5 xl:py-6 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
           {/* Logo textual */}
           <span className={`flex items-center ${poppins.className}`}>
-            <img
+            <Image
               src="/image.png"
-              alt=""
+              alt="Logo"
+              width={200}
+              height={80}
+              priority
               className={`w-20 h-auto xs:w-24 sm:w-28 md:w-32 lg:w-40 xl:w-48 2xl:w-56 object-contain transition-all duration-500 ${
                 isScrolled ? "brightness-0" : "brightness-100"
               }`}
@@ -291,7 +295,7 @@ export default function Home() {
               Buscamos generar impacto real armando equipos de alto rendimiento que
               piensen junto al cliente, no por él. Creemos que la comprensión profunda
               del negocio es nuestra carta maestra: antes de escribir una sola línea de
-              código, nos aseguramos de entender el "para qué".
+              código, nos aseguramos de entender el &quot;para qué&quot;.
             </p>
             <p className="text-gray-700 leading-relaxed text-sm sm:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
               Internamente trabajamos en squads ágiles y multidisciplinarios, lo que
@@ -302,9 +306,11 @@ export default function Home() {
 
           {/* Imagen */}
           <div className="flex justify-center lg:justify-end">
-            <img
+            <Image
               src="/logo-sin-fondo.png"
               alt="Ilustración filosofía Paroz Labs"
+              width={500}
+              height={500}
               className="w-48 xs:w-56 sm:w-64 md:w-80 lg:w-96 xl:w-[420px] 2xl:w-[500px] object-contain"
             />
           </div>
@@ -479,13 +485,10 @@ function EmbeddedChatbot() {
 
   try {
     // ✅ Captura si el navegador tiene activado Global Privacy Control
-    const gpc =
-      typeof (navigator as any).globalPrivacyControl !== "undefined" &&
-      (navigator as any).globalPrivacyControl
-        ? "1"
-        : "0";
+    const navWithGpc = navigator as Navigator & { globalPrivacyControl?: boolean };
+    const gpc = navWithGpc.globalPrivacyControl ? "1" : "0";
 
-    const res = await fetch("http://localhost:5000/api/chat", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chat`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -566,10 +569,10 @@ function EmbeddedChatInput({ onSendMessage }: { onSendMessage: (msg: string) => 
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      handleSubmit(e as any);
+      handleSubmit(e);
     }
   };
 
@@ -584,7 +587,7 @@ function EmbeddedChatInput({ onSendMessage }: { onSendMessage: (msg: string) => 
         className="flex-1 px-3 sm:px-4 py-2 sm:py-2.5 lg:py-3 text-gray-800 bg-gray-50 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#1a2f38] focus:border-transparent placeholder:text-gray-500 text-xs sm:text-sm lg:text-base xl:text-lg"
       />
       <button
-        onClick={(e) => handleSubmit(e as any)}
+        onClick={(e) => handleSubmit(e)}
         className="bg-[#1a2f38] text-white rounded-br-sm rounded-full p-2 sm:p-2.5 lg:p-3 hover:bg-[#16232a] transition disabled:opacity-50 flex items-center justify-center"
         disabled={!input.trim()}
       >

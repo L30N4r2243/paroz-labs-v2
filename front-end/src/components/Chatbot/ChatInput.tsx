@@ -6,8 +6,8 @@ import useAutosize from "@/hooks/useAutosize"
 import { ArrowUp } from "lucide-react"
 
 interface ChatInputProps {
-  // tu onSendMessage puede ser async (por eso Promise<any>)
-  onSendMessage: (message: string) => Promise<any> | void
+  // tu onSendMessage puede ser async
+  onSendMessage: (message: string) => Promise<void> | void
 }
 
 export default function ChatInput({ onSendMessage }: ChatInputProps) {
